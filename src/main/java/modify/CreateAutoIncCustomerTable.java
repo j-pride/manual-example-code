@@ -3,8 +3,8 @@ package modify;
 import pm.pride.Database;
 import pm.pride.DatabaseFactory;
 import pm.pride.ResourceAccessor.DBType;
+import quickstart.CreateCustomerTable;
 import util.AbstractCreateTable;
-import util.CreateCustomerTable;
 import util.ResourceAccessorExampleConfig;
 
 /**

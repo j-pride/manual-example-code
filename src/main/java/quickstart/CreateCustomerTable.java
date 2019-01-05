@@ -1,4 +1,6 @@
-package util;
+package quickstart;
+
+import util.AbstractCreateTable;
 
 public class CreateCustomerTable extends AbstractCreateTable {
 	public static void main(String[] args) throws Exception {
