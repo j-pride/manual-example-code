@@ -51,7 +51,7 @@ public class QueryClient {
 
 	private static void printNameEqualsFirstName() throws SQLException {
 		WhereCondition byNameEqualsFirstName = new WhereCondition()
-				.and(COL_NAME, SQL.raw(COL_FIRST_NAME));
+				.and(COL_NAME, SQL.pre(COL_FIRST_NAME));
 		printCustomers(new Customer().query(byNameEqualsFirstName));
 	}
 
