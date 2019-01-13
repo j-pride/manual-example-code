@@ -11,7 +11,7 @@ import static joins.JoinsClient.CUSTOMER_ADDRESS_JOIN_CONDITION;
 import static joins.JoinsClient.CUSTOMER_ALIAS;
 
 public class CustomerWithOptionalAddress extends Customer {
-	Address privateAddress;
+	Address address;
 
 	public CustomerWithOptionalAddress() {}
 
@@ -19,23 +19,23 @@ public class CustomerWithOptionalAddress extends Customer {
 		super(id);
 	}
 	
-	public Address getPrivateAddress() {
-		return privateAddress;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setPrivateAddress(Address privateAddress) {
-		this.privateAddress = privateAddress;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
     public static RecordDescriptor red =
     		new JoinRecordDescriptor(Customer.red, CUSTOMER_ALIAS)
-    			.leftJoin(Address.red, ADDRESS_ALIAS, "privateAddress", CUSTOMER_ADDRESS_JOIN_CONDITION);
+    			.leftJoin(Address.red, ADDRESS_ALIAS, "address", CUSTOMER_ADDRESS_JOIN_CONDITION);
     		
     public RecordDescriptor getDescriptor() { return red; }
 	
 	public String toString() {
-		String addressString = (privateAddress != null) ?
-				", " + privateAddress.getStreet() + ", " + privateAddress.getCity() :
+		String addressString = (address != null) ?
+				", " + address.getStreet() + ", " + address.getCity() :
 				" without address";
 		return getFirstName() + " " + getName() + addressString;
 				

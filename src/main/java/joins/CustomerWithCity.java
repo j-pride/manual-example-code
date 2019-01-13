@@ -4,13 +4,13 @@ import java.sql.SQLException;
 
 import pm.pride.JoinRecordDescriptor;
 import pm.pride.RecordDescriptor;
-import pm.pride.SQL;
 import quickstart.Customer;
+import static joins.JoinsClient.*;
 
 public class CustomerWithCity extends Customer {
     protected static final RecordDescriptor red =
-    	new JoinRecordDescriptor(CustomerWithCity.class, Customer.red, "c")
-    	  .join("ADDRESS", "a", "a.customer_id = c.id")
+    	new JoinRecordDescriptor(CustomerWithCity.class, Customer.red, CUSTOMER_ALIAS)
+    	  .join(Address.TABLE, ADDRESS_ALIAS, CUSTOMER_ADDRESS_JOIN_CONDITION)
     	    .row(Address.COL_CITY, "getCity", "setCity");
 
     public RecordDescriptor getDescriptor() { return red; }
@@ -23,6 +23,8 @@ public class CustomerWithCity extends Customer {
 	public CustomerWithCity(int id) throws SQLException {
 		super(id);
 	}
+	
+	public CustomerWithCity() {}
 	
 	public String toString() {
 		return getFirstName() + " " + getName() + ", " + getCity();

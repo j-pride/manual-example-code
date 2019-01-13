@@ -7,19 +7,24 @@ import pm.pride.MappedObject;
 import pm.pride.RecordDescriptor;
 import pm.pride.SQL;
 import quickstart.Customer;
+import static joins.JoinsClient.*;
 
 public class CustomerNameAndCity extends MappedObject implements Cloneable {
     protected static final RecordDescriptor red =
-    	new JoinRecordDescriptor(CustomerNameAndCity.class, "CUSTOMER", "cst")
-    		.row("name", "getName", "setName")
-    	  .join("ADDRESS", "addr", "addr.customer_id = cst.id")
-    	    .row("city", "getCity", "setCity");
+    	new JoinRecordDescriptor(CustomerNameAndCity.class, Customer.TABLE, CUSTOMER_ALIAS)
+			.row(Customer.COL_ID, "getId", "setId")
+    		.row(Customer.COL_NAME, "getName", "setName")
+    	  .join(Address.TABLE, ADDRESS_ALIAS, CUSTOMER_ADDRESS_JOIN_CONDITION)
+    	    .row(Address.COL_CITY, "getCity", "setCity");
 
     public RecordDescriptor getDescriptor() { return red; }
 
-    private String city;
+    private int id;
     private String name;
+    private String city;
 
+	public int getId() { return id; }
+	public void setId(int id) { this.id = id; }
 	public String getCity() { return city; }
 	public void setCity(String city) { this.city = city; }
 	public String getName() { return name; }
@@ -32,6 +37,6 @@ public class CustomerNameAndCity extends MappedObject implements Cloneable {
     }
 
 	public String toString() {
-		return getName() + ", " + getCity();
+		return getId() + ": " + getName() + ", " + getCity();
 	}
 }
