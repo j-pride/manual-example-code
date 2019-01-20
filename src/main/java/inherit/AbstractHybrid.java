@@ -9,15 +9,12 @@ import pm.pride.*;
 abstract public class AbstractHybrid extends MappedObject implements Cloneable, java.io.Serializable {
     public static final String COL_ID = "id";
 
-    protected static final RecordDescriptor red = new RecordDescriptor
-        (AbstractHybrid.class, null, null, new String[][] {
-            { COL_ID,   "getId",   "setId" },
-        });
+    protected static final RecordDescriptor red =
+        new RecordDescriptor(AbstractHybrid.class, null, null)
+            .row( COL_ID, "getId", "setId" )
+            .key( COL_ID );
 
     public RecordDescriptor getDescriptor() { return red; }
-
-    private static String[] keyFields = new String[] { COL_ID };
-    public String[] getKeyFields() { return keyFields; }
 
     private int id;
 
@@ -31,7 +28,7 @@ abstract public class AbstractHybrid extends MappedObject implements Cloneable, 
     // Re-constructor
     public AbstractHybrid(int id) throws SQLException {
         setId(id);
-        findx();
+        findXE();
     }
 
     public AbstractHybrid() {}

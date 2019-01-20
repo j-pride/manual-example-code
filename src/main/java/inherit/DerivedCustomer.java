@@ -12,15 +12,12 @@ public class DerivedCustomer extends inherit.AbstractHybrid {
     public static final String COL_FIRST_NAME = "first_name";
 
     protected static final RecordDescriptor red = new RecordDescriptor
-        (DerivedCustomer.class, TABLE, inherit.AbstractHybrid.red, new String[][] {
-            { COL_NAME,   "getName",   "setName" },
-            { COL_FIRST_NAME,   "getFirstName",   "setFirstName" },
-        });
+        (DerivedCustomer.class, TABLE, inherit.AbstractHybrid.red)
+	        .row( COL_NAME, "getName", "setName" )
+	        .row( COL_FIRST_NAME, "getFirstName", "setFirstName" )
+	        .key( COL_ID );
 
     public RecordDescriptor getDescriptor() { return red; }
-
-    private static String[] keyFields = new String[] { COL_ID };
-    public String[] getKeyFields() { return keyFields; }
 
     private String name;
     private String firstName;

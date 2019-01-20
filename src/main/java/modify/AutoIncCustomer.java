@@ -12,43 +12,40 @@ import pm.pride.*;
  * @author jlessner
  */
 public class AutoIncCustomer extends MappedObject implements Cloneable, java.io.Serializable {
-    public static final String TABLE = "CUSTOMER";
+    public static final String TABLE = "AUTOINCCUSTOMER";
     public static final String COL_ID = "id";
     public static final String COL_NAME = "name";
     public static final String COL_FIRST_NAME = "first_name";
 
-    protected static final RecordDescriptor red = new RecordDescriptor
-        (AutoIncCustomer.class, "CUSTOMER", null, new String[][] {
-            { COL_ID,   "getId",   "setId" },
-            { COL_NAME,   "getName",   "setName" },
-            { COL_FIRST_NAME,   "getFirstName",   "setFirstName" },
-        });
+    protected static final RecordDescriptor red =
+        new RecordDescriptor(AutoIncCustomer.class, TABLE, null)
+            .row( COL_ID, "getId", "setId" )
+            .row( COL_NAME, "getName", "setName" )
+            .row( COL_FIRST_NAME, "getFirstName", "setFirstName" )
+            .key( COL_ID )
+            .auto( COL_ID );
 
     public RecordDescriptor getDescriptor() { return red; }
 
-    private static String[] keyFields = new String[] { "id" };
-    public String[] getKeyFields() { return keyFields; }
-    public String[] getAutoFields() { return keyFields; }
-
-    private long id;
+    private int id;
     private String name;
     private String firstName;
 
     // Read access functions
-    public long getId()   { return id; }
+    public int getId()   { return id; }
     public String getName()   { return name; }
     public String getFirstName()   { return firstName; }
 
     // Write access functions
-    public void setId(long id) { this.id = id; }
+    public void setId(int id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
 
 
     // Re-constructor
-    public AutoIncCustomer(long id) throws SQLException {
+    public AutoIncCustomer(int id) throws SQLException {
         setId(id);
-        findx();
+        findXE();
     }
 
     public AutoIncCustomer() {}
@@ -62,4 +59,3 @@ public class AutoIncCustomer extends MappedObject implements Cloneable, java.io.
     }
     
 }
-

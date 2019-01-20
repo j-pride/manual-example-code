@@ -23,7 +23,7 @@ public class CreateAutoIncCustomerTable extends AbstractCreateTable {
 					" but you are running type " + database.getDBType() + ". This will probably not work.");
 		}
 		
-		createTable("CUSTOMER",
+		createTable("AUTOINCCUSTOMER",
 			"id integer not null primary key AUTOINCREMENT",
 			"name varchar(20)",
 			"first_name varchar(30)"

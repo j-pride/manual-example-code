@@ -11,18 +11,13 @@ public class DerivedCustomerAdapter extends inherit.AbstractAdapter {
     public static final String COL_NAME = "name";
     public static final String COL_FIRST_NAME = "first_name";
 
-    protected static final RecordDescriptor red = new RecordDescriptor
-        (DerivedCustomerEntity.class, TABLE, inherit.AbstractAdapter.red, new String[][] {
-            { COL_NAME,   "getName",   "setName" },
-            { COL_FIRST_NAME,   "getFirstName",   "setFirstName" },
-        });
+    protected static final RecordDescriptor red =
+        new RecordDescriptor(DerivedCustomerEntity.class, TABLE, inherit.AbstractAdapter.red)
+            .row( COL_NAME, "getName", "setName" )
+            .row( COL_FIRST_NAME, "getFirstName", "setFirstName" )
+            .key( COL_ID );
 
     public RecordDescriptor getDescriptor() { return red; }
 
-    private static String[] keyFields = new String[] { COL_ID };
-    public String[] getKeyFields() { return keyFields; }
-
     DerivedCustomerAdapter(DerivedCustomerEntity entity) { super(entity); }
-
-
 }

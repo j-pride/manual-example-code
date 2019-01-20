@@ -10,16 +10,12 @@ abstract public class AbstractAdapter extends ObjectAdapter {
     public static final String COL_ID = "id";
 
     protected static final RecordDescriptor red = new RecordDescriptor
-        (AbstractEntity.class, null, null, new String[][] {
-            { COL_ID,   "getId",   "setId" },
-        });
+        (AbstractEntity.class, null, null)
+	        .row( COL_ID, "getId", "setId" )
+	        .key( COL_ID );
 
     public RecordDescriptor getDescriptor() { return red; }
 
-    private static String[] keyFields = new String[] { COL_ID };
-    public String[] getKeyFields() { return keyFields; }
-
     AbstractAdapter(AbstractEntity entity) { super(entity); }
-
 
 }

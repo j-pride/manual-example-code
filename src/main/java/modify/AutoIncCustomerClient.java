@@ -40,7 +40,7 @@ public class AutoIncCustomerClient {
 	}
 
 	private static void createAndUpdate() throws SQLException {
-		AutoIncCustomer paddy = new AutoIncCustomer(57);
+		AutoIncCustomer paddy = new AutoIncCustomer(7);
 		paddy.setFirstName("Paddy");
 		paddy.update();
 		paddy.commit();
@@ -50,7 +50,7 @@ public class AutoIncCustomerClient {
 		AutoIncCustomer customer = new AutoIncCustomer();
 		for (int i = 0; i < 10; i++) {
 			customer.setName("Fingal-" + i);
-			customer.setFirstName("Paddy-" + i);
+			customer.setFirstName("Paddy");
 			customer.create();
 			System.out.println(customer.getId());
 		}
