@@ -24,8 +24,10 @@ abstract public class OptimisticObject extends MappedObject {
     public int update() throws SQLException {
         version++;
         int numRows = update(where().and(COL_VERSION, version-1)); 
-        if (numRows == 0)
+        if (numRows == 0) {
+        	version--;
             throw new SQLException("optimistic lock error"); 
+        }
         return numRows; 
     }
         
