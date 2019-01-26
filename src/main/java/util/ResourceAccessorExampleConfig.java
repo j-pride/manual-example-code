@@ -20,10 +20,10 @@ public class ResourceAccessorExampleConfig {
 		if (accessor == null) {
 			Properties initProperties = assembleConfigFromFileAndSystemProperties();
 			accessor = new ResourceAccessorJSE(initProperties);
-			DatabaseFactory.setResourceAccessor(accessor);
 			if (initProperties.containsKey(Config.DB)) {
 				DatabaseFactory.setDatabaseName(initProperties.getProperty(Config.DB));
 			}
+			DatabaseFactory.setResourceAccessor(accessor);
 		}
 		return accessor;
 	}
